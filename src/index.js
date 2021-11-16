@@ -2,9 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
+import GlobalStyles from "./styles/globalStyles";
+import CSSVariables from "./styles/cssVariables";
 
 ReactDOM.render(
 	<React.StrictMode>
+		<GlobalStyles />
+		<CSSVariables />
 		<App />
 	</React.StrictMode>,
 	document.getElementById("root")
