@@ -19,6 +19,8 @@ const CSSVariables = createGlobalStyle`
 	);
 
     --max-width: 800px;
+
+    --outline: 2px dashed var(--color-accent);
   }
 `;
 

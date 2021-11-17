@@ -37,10 +37,16 @@ const List = styled.ul`
 		display: block;
 		height: 100%;
 		color: var(--color-white);
+		transition: color, transform 0.3s;
 
 		&:focus {
-			outline: 2px dotted var(--color-accent);
+			outline: var(--outline);
 			outline-offset: 4px;
+		}
+
+		&:hover {
+			color: var(--color-accent);
+			transform: rotate(15deg);
 		}
 	}
 `;
