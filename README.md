@@ -18,7 +18,7 @@ Användaren ska kunna bläddra i galleriet, ta bort enskilda bilder, ladda ner e
 
 **VG**: Försök använda reverse geocoding för att visa närmaste orten, istället för latitud och longitud.
 
-**VG**: Funktion för att appen ska vänta 3 sekunder och sedan ta en bild. När bilden är tagen ska en notifiering visas.
+**VG**: Funktion för att appen ska vänta 3 sekunder och  sedan ta en bild. När bilden är tagen ska en notifiering visas.
 
 **VG**: Appens filer och tagna bilder sparas i cache, så att användaren kan titta på dem även i offline-läge.
 

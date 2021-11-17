@@ -8,7 +8,7 @@ function Menu() {
 		<nav>
 			<List>
 				<Item>
-					<Link to="/photo" aria-label="Take Photo">
+					<Link to="/new" aria-label="Take Photo">
 						<Camera size={26} />
 					</Link>
 				</Item>
@@ -34,8 +34,8 @@ const List = styled.ul`
 	padding: 0;
 
 	& a {
-    display: block;
-    height: 100%;
+		display: block;
+		height: 100%;
 		color: var(--color-white);
 
 		&:focus {
