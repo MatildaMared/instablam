@@ -48,6 +48,7 @@ const Grid = styled.main`
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
 	grid-gap: 1rem;
+	margin-bottom: 1rem;
 `;
 
 export default GalleryPage;
