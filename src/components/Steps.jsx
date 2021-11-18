@@ -1,26 +1,35 @@
 import React from "react";
 import { Check } from "react-feather";
 import styled from "styled-components";
+import SrText from "./SrText";
 
 function Steps({ totalSteps, currentStep }) {
-	console.log(currentStep);
 	return (
-		<Wrapper>
+		<Wrapper aria-label="progress">
 			<ProgressBar>
 				<Progress currentStep={currentStep} totalSteps={totalSteps} />
 			</ProgressBar>
 			{[...Array(totalSteps)].map((_, i) => (
 				<Step
 					key={i + 1}
+					aria-current={currentStep === i + 1 ? "true" : ""}
 					className={
 						(i + 1 === currentStep ? "active" : "") +
 						(currentStep > i + 1 ? "complete" : "")
 					}
 				>
 					{currentStep > i + 1 ? (
-						<Check size={16} strokeWidth={3} />
+						<>
+							<Check size={16} strokeWidth={3} />
+							<SrText text="This step is completed" />
+						</>
 					) : (
-						<span>{i + 1}</span>
+						<>
+							<span>{i + 1}</span>
+							{currentStep < i + 1 && (
+								<SrText text="This step is not completed" />
+							)}
+						</>
 					)}
 				</Step>
 			))}
@@ -28,17 +37,19 @@ function Steps({ totalSteps, currentStep }) {
 	);
 }
 
-const Wrapper = styled.section`
-	width: 250px;
+const Wrapper = styled.ol`
+	padding: 0;
+	width: 225px;
 	margin: 0 auto;
 	margin-top: 0.5rem;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	position: relative;
+	list-style: none;
 `;
 
-const ProgressBar = styled.div`
+const ProgressBar = styled.li`
 	position: absolute;
 	width: 100%;
 	height: 2px;
@@ -53,9 +64,9 @@ const Progress = styled.div`
 	background-color: var(--color-accent);
 `;
 
-const Step = styled.div`
-	height: 35px;
-	width: 35px;
+const Step = styled.li`
+	height: 30px;
+	width: 30px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -65,6 +76,7 @@ const Step = styled.div`
 	border-radius: 100%;
 	border: 2px solid var(--color-white);
 	font-size: 0.8rem;
+	user-select: none;
 
 	&.active {
 		background-color: var(--color-accent);
