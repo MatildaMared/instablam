@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Camera from "../components/Camera";
+import Steps from "../components/Steps";
 import styled from "styled-components";
 
 function Step1() {
@@ -35,13 +36,14 @@ function Step4() {
 }
 
 function NewPhotoPage() {
-	const steps = 4;
-	const [currentStep, setCurrentStep] = useState(1);
+	const totalSteps = 4;
+	const [currentStep, setCurrentStep] = useState(2);
 	return (
 		<Wrapper>
 			<Heading>Add new photo</Heading>
 			<Divider />
 			<Camera />
+			<Steps totalSteps={totalSteps} currentStep={currentStep} />
 		</Wrapper>
 	);
 }
