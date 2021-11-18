@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { MapPin, Calendar, XSquare } from "react-feather";
 import styled from "styled-components";
+import { Context } from "./../context/Context";
+import { deletePhoto } from "./../utils/galleryHelper";
 
 function Card({ info }) {
+	const [context, updateContext] = useContext(Context);
+
+	function onDelete() {
+		deletePhoto(context, updateContext, info.id);
+	}
+
 	return (
 		<CardWrapper>
 			<Header>
@@ -10,7 +18,7 @@ function Card({ info }) {
 					<Calendar size={16} strokeWidth={1} />
 					<p>{info.date}</p>
 				</DetailsWrapper>
-				<DeleteBtn aria-label="Delete Image">
+				<DeleteBtn aria-label="Delete Image" onClick={onDelete}>
 					<XSquare />
 				</DeleteBtn>
 			</Header>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Camera from "../components/Camera";
 import Steps from "../components/Steps";
 import Divider from "../components/Divider";
