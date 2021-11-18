@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Camera from "../components/Camera";
 import Steps from "../components/Steps";
 import Divider from "../components/Divider";
 import styled from "styled-components";
+import AddLocationData from "../components/AddLocationData";
 
 function NewPhotoPage() {
 	const totalSteps = 4;
 	const [currentStep, setCurrentStep] = useState(1);
+	const [photo, setPhoto] = useState(null);
+
 	return (
 		<Wrapper>
 			<Heading>Add new photo</Heading>
@@ -17,7 +20,15 @@ function NewPhotoPage() {
 				{currentStep === 4 && "Step 4. Add caption"}
 			</Step>
 			<Divider />
-			<Camera />
+			{currentStep === 1 && (
+				<Camera
+					setPhoto={setPhoto}
+					photo={photo}
+					currentStep={currentStep}
+					setCurrentStep={setCurrentStep}
+				/>
+			)}
+			{currentStep === 2 && <AddLocationData photo={photo} />}
 			<Steps totalSteps={totalSteps} currentStep={currentStep} />
 		</Wrapper>
 	);
@@ -32,14 +43,14 @@ const Wrapper = styled.main`
 
 const Heading = styled.h1`
 	font-family: var(--font-secondary);
-	margin-top: .5rem;
+	margin-top: 0.5rem;
 `;
 
 const Step = styled.p`
-	font-size: .75rem;
+	font-size: 0.75rem;
 	text-transform: uppercase;
 	letter-spacing: 1px;
-	margin-bottom: .5rem;
+	margin-bottom: 0.5rem;
 `;
 
 export default NewPhotoPage;
