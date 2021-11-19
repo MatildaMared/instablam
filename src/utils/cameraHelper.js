@@ -50,7 +50,7 @@ export async function takePhoto(stream) {
 		let blob = await imageCapture.takePhoto();
 		return blob;
 	} catch (err) {
-		console.log("There was an error!");
+		console.log("There was an error!!g");
 		console.log(err.message);
 		return null;
 	}
