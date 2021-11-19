@@ -1,9 +1,11 @@
 import React from "react";
+import Heading from "../components/Heading";
+
 
 function SettingsPage() {
 	return (
 		<main>
-			<h1>Settings</h1>
+			<Heading text="Settings" />
 		</main>
 	);
 }

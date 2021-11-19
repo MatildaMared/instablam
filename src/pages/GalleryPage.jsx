@@ -2,17 +2,21 @@ import React, { useContext } from "react";
 import Card from "../components/Card";
 import styled from "styled-components";
 import { Context } from "./../context/Context";
+import Heading from "../components/Heading";
 
 function GalleryPage() {
 	const [context] = useContext(Context);
 	const photos = context.savedPhotos;
 
 	return (
-		<Grid>
-			{photos.map((image) => (
-				<Card info={image} key={image.id} />
-			))}
-		</Grid>
+		<>
+			<Heading text="Gallery" />
+			<Grid>
+				{photos.map((image) => (
+					<Card info={image} key={image.id} />
+				))}
+			</Grid>
+		</>
 	);
 }
 

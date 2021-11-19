@@ -1,22 +1,24 @@
 export async function cameraOff(
 	videoElement,
 	updateCameraState,
-	stream,
-	setStream
+	context,
+	updateContext
 ) {
 	videoElement.srcObject = null;
-	stream.getTracks().forEach((track) => {
+	context.stream.getTracks().forEach((track) => {
 		track.stop();
 	});
 	updateCameraState();
-	setStream(null);
+	updateContext({
+		stream: null,
+	});
 }
 
 export async function cameraOn(
 	videoElement,
 	setStatusMessage,
 	updateCameraState,
-	setStream
+	updateContext
 ) {
 	const constraints = {
 		video: {
@@ -28,7 +30,9 @@ export async function cameraOn(
 	try {
 		const stream = await navigator.mediaDevices.getUserMedia(constraints);
 		videoElement.srcObject = stream;
-		setStream(stream);
+		updateContext({
+			stream: stream,
+		});
 
 		videoElement.addEventListener("loadedmetadata", () => {
 			videoElement.play();
@@ -41,14 +45,13 @@ export async function cameraOn(
 }
 
 export async function takePhoto(stream) {
-  try {
-    console.log("Stream is: ", stream);
+	try {
 		const imageCapture = new ImageCapture(stream.getVideoTracks()[0]);
 		let blob = await imageCapture.takePhoto();
-    return blob;
+		return blob;
 	} catch (err) {
 		console.log("There was an error!");
-    console.log(err.message);
-    return null;
+		console.log(err.message);
+		return null;
 	}
 }

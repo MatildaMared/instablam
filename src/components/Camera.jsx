@@ -1,16 +1,17 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import styled from "styled-components";
 import ToggleCameraBtn from "./ToggleCameraBtn";
 import { cameraOn, cameraOff } from "../utils/cameraHelper";
 import TakePhotoBtn from "./TakePhotoBtn";
 import Photo from "./Photo";
 import ChoosePhotoBtns from "./ChoosePhotoBtns";
+import { Context } from "../context/Context";
 
 const Camera = ({ setPhoto, photo, currentStep, setCurrentStep }) => {
+	const [context, updateContext] = useContext(Context);
 	const [canUseMd, setCanUseMd] = useState(false);
 	const [statusMessage, setStatusMessage] = useState("");
 	const [cameraIsOn, setCameraIsOn] = useState(false);
-	const [stream, setStream] = useState(null);
 	const videoRef = useRef(null);
 
 	useEffect(() => {
@@ -19,16 +20,6 @@ const Camera = ({ setPhoto, photo, currentStep, setCurrentStep }) => {
 		}
 	}, []);
 
-	useEffect(() => {
-		console.log("Stream: ", stream);
-	}, [stream]);
-
-	useEffect(() => {
-		if (photo !== null) {
-			console.log("Photo taken!");
-		}
-	}, [photo]);
-
 	const handleCameraToggle = () => {
 		if (!cameraIsOn) {
 			setStatusMessage("");
@@ -36,46 +27,42 @@ const Camera = ({ setPhoto, photo, currentStep, setCurrentStep }) => {
 				videoRef.current,
 				setStatusMessage,
 				() => setCameraIsOn(true),
-				setStream
+				updateContext
 			);
 		} else {
 			cameraOff(
 				videoRef.current,
 				() => setCameraIsOn(false),
-				stream,
-				setStream
+				context,
+				updateContext
 			);
 		}
 	};
 
 	return (
-		<CameraContainer>
+		<section>
 			{canUseMd ? (
-				<VideoWrapper>
-					{photo ? <Photo photo={photo} /> : <Video ref={videoRef}></Video>}
-				</VideoWrapper>
+				<>
+					{context.photo ? (
+						<Photo size={300} />
+					) : (
+						<VideoWrapper>
+							<Video ref={videoRef}></Video>
+						</VideoWrapper>
+					)}
+				</>
 			) : (
 				<p>Your device does not support mediaDevices.</p>
 			)}
 			<p>{statusMessage}</p>
-			{!photo && (
+			{!context.photo && (
 				<ToggleCameraBtn onClick={handleCameraToggle} cameraIsOn={cameraIsOn} />
 			)}
-			{cameraIsOn && !photo && (
-				<TakePhotoBtn stream={stream} setPhoto={setPhoto} />
-			)}
-			{photo && (
-				<ChoosePhotoBtns
-					setPhoto={setPhoto}
-					currentStep={currentStep}
-					setCurrentStep={setCurrentStep}
-				/>
-			)}
-		</CameraContainer>
+			{cameraIsOn && !context.photo && <TakePhotoBtn />}
+			{context.photo && <ChoosePhotoBtns />}
+		</section>
 	);
 };
-
-const CameraContainer = styled.div``;
 
 const Video = styled.video`
 	width: 300px;

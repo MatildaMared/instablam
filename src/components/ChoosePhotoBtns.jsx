@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Context } from "./../context/Context";
 
-function ChoosePhotoBtns({ currentStep, setCurrentStep, setPhoto }) {
+function ChoosePhotoBtns() {
+	const [context, updateContext] = useContext(Context);
+	const currentStep = context.currentStep;
+
 	const onYesHandler = () => {
-		setCurrentStep(currentStep + 1);
+		updateContext({
+			currentStep: currentStep + 1,
+		});
 	};
 
 	const onNoHandler = () => {
-		setPhoto(null);
+		console.log(context.stream);
+		updateContext({
+			photo: null,
+		});
 	};
 
 	return (
