@@ -8,39 +8,17 @@ function AddFilter({ currentStep, setCurrentStep }) {
 	const [context, setContext] = useContext(Context);
 	const [selectedFilter, setSelectedFilter] = useState("");
 	const filters = [
+		"none",
 		"clarendon",
 		"crema",
-		"dogpatch",
-		"earlybird",
-		"gingham",
-		"ginza",
 		"hefe",
-		"helena",
-		"hudson",
-		"inkwell",
-		"kelvin",
-		"juno",
-		"lark",
-		"lofi",
-		"ludwig",
-		"maven",
-		"mayfair",
 		"moon",
-		"nashville",
 		"perpetua",
 		"poprocket",
 		"reyes",
-		"rise",
-		"sierra",
 		"skyline",
-		"slumber",
-		"stinson",
-		"sutro",
-		"toaster",
 		"valencia",
 		"walden",
-		"vesper",
-		"willow",
 		"xpro-ii",
 	];
 
@@ -73,11 +51,13 @@ function AddFilter({ currentStep, setCurrentStep }) {
 }
 
 const Grid = styled.ul`
+	padding: 0;
 	margin: 0.5rem 0;
 	width: 100%;
 	max-width: 600px;
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+	grid-gap: 2px;
 `;
 
 const PhotoWrapper = styled.li`
