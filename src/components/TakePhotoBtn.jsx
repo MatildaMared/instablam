@@ -4,7 +4,6 @@ import { Context } from "../context/Context";
 
 function TakePhotoBtn({ videoRef, canvasRef }) {
 	const [context, updateContext] = useContext(Context);
-	const stream = context.stream;
 
 	const clickHandler = async () => {
 		const photo = await takePhoto(videoRef, canvasRef);

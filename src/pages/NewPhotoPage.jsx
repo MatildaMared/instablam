@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Camera from "../components/Camera";
 import Steps from "../components/Steps";
 import Divider from "../components/Divider";
@@ -10,15 +10,28 @@ import { Context } from "../context/Context";
 
 function NewPhotoPage() {
 	const [context, updateContext] = useContext(Context);
-	const totalSteps = context.totalSteps;
-	const currentStep = context.currentStep;
+	const totalSteps = 4;
+	const [currentStep, setCurrentStep] = useState(1);
+
+	function resetData() {
+		updateContext({
+			photo: null,
+			location: null,
+		});
+	}
+
+	useEffect(() => {
+		resetData();
+	}, []);
 
 	return (
 		<Wrapper>
 			<Heading text="Add new photo" />
 			<StepDescription currentStep={currentStep} />
 			<Divider />
-			{currentStep === 1 && <Camera />}
+			{currentStep === 1 && (
+				<Camera currentStep={currentStep} setCurrentStep={setCurrentStep} />
+			)}
 			{currentStep === 2 && <AddLocationData />}
 			<Steps totalSteps={totalSteps} currentStep={currentStep} />
 		</Wrapper>

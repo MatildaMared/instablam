@@ -5,10 +5,7 @@ export const Context = createContext();
 
 export const ContextProvider = ({ children }) => {
 	const [context, setContext] = useState({
-		totalSteps: 4,
-		currentStep: 1,
 		stream: null,
-		cameraIsOn: false,
 		photo: null,
 		savedPhotos: [
 			{

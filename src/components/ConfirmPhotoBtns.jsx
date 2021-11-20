@@ -1,18 +1,15 @@
 import React, { useContext } from "react";
-import { Context } from "./../context/Context";
+import { Context } from "../context/Context";
 
-function ChoosePhotoBtns() {
+function ConfirmPhotoBtns({ setCurrentStep, turnOffCamera }) {
 	const [context, updateContext] = useContext(Context);
-	const currentStep = context.currentStep;
 
 	const onYesHandler = () => {
-		updateContext({
-			currentStep: currentStep + 1,
-		});
+		setCurrentStep(2);
+		turnOffCamera();
 	};
 
 	const onNoHandler = () => {
-		console.log(context.stream);
 		updateContext({
 			photo: null,
 		});
@@ -29,4 +26,4 @@ function ChoosePhotoBtns() {
 	);
 }
 
-export default ChoosePhotoBtns;
+export default ConfirmPhotoBtns;

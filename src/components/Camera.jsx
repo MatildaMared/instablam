@@ -4,10 +4,11 @@ import ToggleCameraBtn from "./ToggleCameraBtn";
 import { cameraOn, cameraOff } from "../utils/cameraHelper";
 import TakePhotoBtn from "./TakePhotoBtn";
 import Photo from "./Photo";
-import ChoosePhotoBtns from "./ChoosePhotoBtns";
+import ConfirmPhotoBtns from "./ConfirmPhotoBtns";
 import { Context } from "../context/Context";
+import StatusMessage from "./StatusMessage";
 
-const Camera = ({ setPhoto, photo, currentStep, setCurrentStep }) => {
+const Camera = ({ currentStep, setCurrentStep }) => {
 	const [context, updateContext] = useContext(Context);
 	const [canUseMd, setCanUseMd] = useState(false);
 	const [statusMessage, setStatusMessage] = useState("");
@@ -18,8 +19,18 @@ const Camera = ({ setPhoto, photo, currentStep, setCurrentStep }) => {
 	useEffect(() => {
 		if (navigator.mediaDevices) {
 			setCanUseMd(true);
+		} else {
+			setStatusMessage(
+				"Your device does not support mediaDevices unfortunately!"
+			);
 		}
 	}, []);
+
+	useEffect(() => {
+		if (context.photo) {
+			setCameraIsOn(false);
+		}
+	}, [context, updateContext]);
 
 	const handleCameraToggle = () => {
 		if (!cameraIsOn) {
@@ -31,6 +42,7 @@ const Camera = ({ setPhoto, photo, currentStep, setCurrentStep }) => {
 				updateContext
 			);
 		} else {
+			setStatusMessage("");
 			cameraOff(
 				videoRef.current,
 				() => setCameraIsOn(false),
@@ -42,7 +54,7 @@ const Camera = ({ setPhoto, photo, currentStep, setCurrentStep }) => {
 
 	return (
 		<section>
-			{canUseMd ? (
+			{canUseMd && (
 				<>
 					{context.photo ? (
 						<Photo size={300} />
@@ -53,17 +65,27 @@ const Camera = ({ setPhoto, photo, currentStep, setCurrentStep }) => {
 						</VideoWrapper>
 					)}
 				</>
-			) : (
-				<p>Your device does not support mediaDevices.</p>
 			)}
-			<p>{statusMessage}</p>
 			{!context.photo && (
 				<ToggleCameraBtn onClick={handleCameraToggle} cameraIsOn={cameraIsOn} />
 			)}
+			<StatusMessage>{statusMessage}</StatusMessage>
 			{cameraIsOn && !context.photo && (
 				<TakePhotoBtn videoRef={videoRef} canvasRef={canvasRef} />
 			)}
-			{context.photo && <ChoosePhotoBtns />}
+			{context.photo && (
+				<ConfirmPhotoBtns
+					setCurrentStep={setCurrentStep}
+					turnOffCamera={() => {
+						cameraOff(
+							videoRef.current,
+							() => setCameraIsOn(false),
+							context,
+							updateContext
+						);
+					}}
+				/>
+			)}
 		</section>
 	);
 };
@@ -80,7 +102,9 @@ const VideoWrapper = styled.div`
 	height: fit-content;
 	padding: 4px;
 	background-image: var(--gradient);
-	margin: 0.5rem 0;
+	margin: 0 auto;
+	margin-top: 0.5rem;
+	margin-bottom: 0.5rem;
 	position: relative;
 `;
 

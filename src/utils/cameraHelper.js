@@ -4,7 +4,9 @@ export async function cameraOff(
 	context,
 	updateContext
 ) {
-	videoElement.srcObject = null;
+	if (videoElement) {
+		videoElement.srcObject = null;
+	}
 	context.stream.getTracks().forEach((track) => {
 		track.stop();
 	});
@@ -23,8 +25,8 @@ export async function cameraOn(
 	const constraints = {
 		video: {
 			facingMode: "user",
-			width: 300,
-			height: 245,
+			width: 600,
+			height: 490,
 		},
 	};
 	try {
@@ -40,6 +42,12 @@ export async function cameraOn(
 		});
 	} catch (error) {
 		console.error(error.message);
+		if (error.message === "Permission denied") {
+			setStatusMessage(
+				"Permission denied, please check your browser settings and make sure to allow the app to use the camera! 🙂"
+			);
+			return;
+		}
 		setStatusMessage(error.message);
 	}
 }
