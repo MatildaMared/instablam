@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Context } from "../context/Context";
 import styled from "styled-components";
 import Button from "./Button";
@@ -6,6 +6,7 @@ import Photo from "./Photo";
 
 function AddFilter({ currentStep, setCurrentStep }) {
 	const [context, setContext] = useContext(Context);
+	const [selectedFilter, setSelectedFilter] = useState("");
 	const filters = [
 		"clarendon",
 		"crema",
@@ -54,11 +55,13 @@ function AddFilter({ currentStep, setCurrentStep }) {
 		<>
 			<Grid>
 				{filters.map((filter) => (
-					<PhotoWrapper key={filter}>
+					<PhotoWrapper
+						key={filter}
+						onClick={() => setSelectedFilter(filter)}
+						className={filter === selectedFilter ? "active" : ""}
+					>
 						<Photo size={150} src={context.photo} filter={filter} />
-						<FilterName>
-							{filter.charAt(0).toUpperCase() + filter.slice(1)}
-						</FilterName>
+						<FilterName>{filter}</FilterName>
 					</PhotoWrapper>
 				))}
 			</Grid>
@@ -69,16 +72,15 @@ function AddFilter({ currentStep, setCurrentStep }) {
 	);
 }
 
-const Grid = styled.div`
+const Grid = styled.ul`
 	margin: 0.5rem 0;
 	width: 100%;
 	max-width: 600px;
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-	grid-gap: 0.5rem;
 `;
 
-const PhotoWrapper = styled.div`
+const PhotoWrapper = styled.li`
 	padding: 8px;
 	margin: 0 auto;
 	width: fit-content;
