@@ -3,10 +3,11 @@ import { Context } from "../context/Context";
 import styled from "styled-components";
 import Button from "./Button";
 import Photo from "./Photo";
+import DisplayChoice from "./DisplayChoice";
 
 function AddFilter({ currentStep, setCurrentStep }) {
 	const [context, setContext] = useContext(Context);
-	const [selectedFilter, setSelectedFilter] = useState("");
+	const [selectedFilter, setSelectedFilter] = useState("none");
 	const filters = [
 		"none",
 		"clarendon",
@@ -31,6 +32,7 @@ function AddFilter({ currentStep, setCurrentStep }) {
 
 	return (
 		<>
+			<DisplayChoice choiceHeader="Filter" choice={selectedFilter} />
 			<Grid>
 				{filters.map((filter) => (
 					<PhotoWrapper

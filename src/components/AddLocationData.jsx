@@ -3,6 +3,7 @@ import Photo from "./Photo";
 import styled from "styled-components";
 import Button from "./Button";
 import StatusMessage from "./StatusMessage";
+import DisplayChoice from "./DisplayChoice";
 import { Context } from "../context/Context";
 import {
 	getCoordinates,
@@ -12,9 +13,10 @@ import {
 
 function AddLocationData({ currentStep, setCurrentStep }) {
 	const [context, updateContext] = useContext(Context);
+	const [isLoading, setIsLoading] = useState(false);
 	const [statusMessage, setStatusMessage] = useState("");
 	const [canUseGeo, setCanUseGeo] = useState(false);
-	const [location, setLocation] = useState(null);
+	const [location, setLocation] = useState("Unknown");
 
 	useEffect(() => {
 		if (navigator.geolocation) {
@@ -24,15 +26,17 @@ function AddLocationData({ currentStep, setCurrentStep }) {
 				"Your device does not support Geolocation unfortunately!"
 			);
 		}
-	});
+	}, []);
 
 	const onAddLocation = async () => {
 		try {
 			setStatusMessage("Loading...");
+			setIsLoading(true);
 			const data = await getCoordinates();
 			const position = await convertCoordinates(data.coords);
 			const locationString = getLocationString(position);
 			setStatusMessage("");
+			setIsLoading(false);
 			setLocation(locationString);
 		} catch (err) {
 			setStatusMessage(
@@ -67,22 +71,23 @@ function AddLocationData({ currentStep, setCurrentStep }) {
 	return (
 		<>
 			<Photo size={200} />
-			{!location ? (
+			<DisplayChoice choiceHeader="Location" choice={location} />
+			{location === "Unknown" ? (
 				<>
-					<ButtonsWrapper>
-						<Button onClick={onAddLocation}>Get location</Button>
-						<Button onClick={onSkipLocation} secondary={true}>
-							Skip this step
-						</Button>
-					</ButtonsWrapper>
+					{canUseGeo && !isLoading && (
+						<ButtonsWrapper>
+							<Button onClick={onAddLocation}>Get location</Button>
+							<Button onClick={onSkipLocation} secondary={true}>
+								Skip this step
+							</Button>
+						</ButtonsWrapper>
+					)}
 					{statusMessage && <StatusMessage>{statusMessage}</StatusMessage>}
 				</>
 			) : (
 				<>
-					<LocationHeader>Your location</LocationHeader>
-					<Location>{location}</Location>
 					<ButtonsWrapper>
-					<Button onClick={onConfirmLocation}>Next</Button>
+						<Button onClick={onConfirmLocation}>Next</Button>
 						<Button onClick={onSkipLocation} secondary={true}>
 							Skip this step
 						</Button>
@@ -103,18 +108,6 @@ const ButtonsWrapper = styled.div`
 	& button:not(:last-child) {
 		margin-right: 0.5rem;
 	}
-`;
-
-const Location = styled.p`
-	margin-bottom: 0.5rem;
-`;
-
-const LocationHeader = styled.h2`
-	margin-top: 0.5rem;
-	text-transform: uppercase;
-	font-size: 0.75rem;
-	letter-spacing: 1px;
-	font-weight: 300;
 `;
 
 export default AddLocationData;
