@@ -23,8 +23,8 @@ export async function cameraOn(
 	const constraints = {
 		video: {
 			facingMode: "user",
-			width: { ideal: 300 },
-			height: 300,
+			width: 300,
+			height: 245,
 		},
 	};
 	try {
@@ -44,11 +44,18 @@ export async function cameraOn(
 	}
 }
 
-export async function takePhoto(stream) {
+export async function takePhoto(videoRef, canvasRef) {
 	try {
-		const imageCapture = new ImageCapture(stream.getVideoTracks()[0]);
-		let blob = await imageCapture.takePhoto();
-		return blob;
+		let context = canvasRef.current.getContext("2d");
+		context.drawImage(
+			videoRef.current,
+			0,
+			0,
+			canvasRef.current.width,
+			canvasRef.current.height
+		);
+		let photo = canvasRef.current.toDataURL("image/png");
+		return photo;
 	} catch (err) {
 		console.log("There was an error!!");
 		console.log(err.message);

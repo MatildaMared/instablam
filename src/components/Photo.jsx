@@ -9,7 +9,7 @@ function Photo({ size }) {
 	return (
 		<Wrapper>
 			<PhotoElem
-				src={URL.createObjectURL(photo)}
+				src={photo}
 				alt="photo taken with user camera"
 				size={size}
 			></PhotoElem>
@@ -19,7 +19,7 @@ function Photo({ size }) {
 
 const PhotoElem = styled.img`
 	width: ${(props) => props.size}px;
-	height: ${(props) => props.size}px;
+	height: auto;
 `;
 
 const Wrapper = styled.div`

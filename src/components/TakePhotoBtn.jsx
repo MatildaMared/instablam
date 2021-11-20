@@ -2,14 +2,14 @@ import React, { useContext } from "react";
 import { takePhoto } from "../utils/cameraHelper";
 import { Context } from "../context/Context";
 
-function TakePhotoBtn() {
+function TakePhotoBtn({ videoRef, canvasRef }) {
 	const [context, updateContext] = useContext(Context);
 	const stream = context.stream;
 
 	const clickHandler = async () => {
-		let blob = await takePhoto(stream);
+		const photo = await takePhoto(videoRef, canvasRef);
 		updateContext({
-			photo: blob,
+			photo: photo,
 		});
 	};
 	return <button onClick={clickHandler}>Take Photo</button>;
