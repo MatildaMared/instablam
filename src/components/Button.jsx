@@ -1,11 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 
-function Button({ onClick, children, secondary }) {
-	return !secondary ? (
-		<PrimaryButton onClick={onClick}> {children}</PrimaryButton>
-	) : (
-		<SecondaryButton onClick={onClick}>{children}</SecondaryButton>
+function Button({ onClick, children, secondary, ghost }) {
+	return (
+		<>
+			{!secondary && !ghost && (
+				<PrimaryButton onClick={onClick}> {children}</PrimaryButton>
+			)}
+			{secondary && (
+				<SecondaryButton onClick={onClick}>{children}</SecondaryButton>
+			)}
+			{ghost && <GhostButton onClick={onClick}>{children}</GhostButton>}
+		</>
 	);
 }
 
@@ -44,6 +50,28 @@ const SecondaryButton = styled(ButtonBase)`
 	&:hover {
 		color: var(--color-white);
 		border: 2px solid var(--color-white);
+	}
+`;
+
+const GhostButton = styled.button`
+	display: block;
+	margin: 0 auto;
+	margin-bottom: .5rem;
+	padding: 0;
+	color: var(--color-accent);
+	font-size: 0.8rem;
+	background-color: transparent;
+	border: 2px solid transparent;
+	transition: border 0.3s;
+	cursor: pointer;
+
+	&:focus {
+		outline: var(--outline);
+		outline-offset: 4px;
+	}
+
+	&:hover {
+		border-bottom: 2px solid var(--color-accent);
 	}
 `;
 

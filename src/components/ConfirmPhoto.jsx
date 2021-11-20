@@ -19,7 +19,7 @@ function ConfirmPhoto({ setCurrentStep, turnOffCamera }) {
 
 	return (
 		<>
-			<Text>Would you like to use this photo? 😀</Text>
+			<Text>Would you like to use this photo? 😀 You look awesome! 💖</Text>
 			<ButtonsWrapper>
 				<Button onClick={onYesHandler}>Yes!</Button>
 				<Button onClick={onNoHandler} secondary={true}>
@@ -31,6 +31,9 @@ function ConfirmPhoto({ setCurrentStep, turnOffCamera }) {
 }
 
 const Text = styled.p`
+	width: 100%;
+	max-width: 300px;
+	margin: 1rem 0 auto;
 	text-align: center;
 `;
 
@@ -44,7 +47,7 @@ const ButtonsWrapper = styled.div`
 		margin: 0;
 
 		&:not(:last-child) {
-			margin-right: 1rem;
+			margin-right: .5rem;
 	}
 `;
 

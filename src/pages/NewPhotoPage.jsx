@@ -8,6 +8,7 @@ import StepDescription from "../components/StepDescription";
 import Heading from "../components/Heading";
 import { Context } from "../context/Context";
 import { closeStream } from "../utils/cameraHelper";
+import AddFilter from "../components/AddFilter";
 
 function NewPhotoPage() {
 	const [context, updateContext] = useContext(Context);
@@ -34,11 +35,19 @@ function NewPhotoPage() {
 			<Heading text="Add new photo" />
 			<StepDescription currentStep={currentStep} />
 			<Divider />
+			<Steps totalSteps={totalSteps} currentStep={currentStep} />
 			{currentStep === 1 && (
 				<Camera currentStep={currentStep} setCurrentStep={setCurrentStep} />
 			)}
-			{currentStep === 2 && <AddLocationData />}
-			<Steps totalSteps={totalSteps} currentStep={currentStep} />
+			{currentStep === 2 && (
+				<AddLocationData
+					currentStep={currentStep}
+					setCurrentStep={setCurrentStep}
+				/>
+			)}
+			{currentStep === 3 && (
+				<AddFilter currentStep={currentStep} setCurrentStep={setCurrentStep} />
+			)}
 		</Wrapper>
 	);
 }

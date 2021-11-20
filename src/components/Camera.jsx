@@ -8,7 +8,7 @@ import { Context } from "../context/Context";
 import StatusMessage from "./StatusMessage";
 import Button from "./Button";
 
-const Camera = ({ currentStep, setCurrentStep }) => {
+const Camera = ({ setCurrentStep }) => {
 	const [context, updateContext] = useContext(Context);
 	const [canUseMd, setCanUseMd] = useState(false);
 	const [statusMessage, setStatusMessage] = useState("");

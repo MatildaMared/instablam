@@ -6,6 +6,7 @@ import GalleryPage from "./pages/GalleryPage";
 import NewPhotoPage from "./pages/NewPhotoPage";
 import SettingsPage from "./pages/SettingsPage";
 import { ContextProvider } from "./context/Context";
+import "./styles/instagramFilters.css";
 
 function App() {
 	return (

@@ -20,7 +20,7 @@ function Steps({ totalSteps, currentStep }) {
 				>
 					{currentStep > i + 1 ? (
 						<>
-							<Check size={16} strokeWidth={3} />
+							<Check size={18} strokeWidth={2} />
 							<SrText text="This step is completed" />
 						</>
 					) : (
@@ -39,9 +39,8 @@ function Steps({ totalSteps, currentStep }) {
 
 const Wrapper = styled.ol`
 	padding: 0;
-	width: 225px;
+	width: 200px;
 	margin: 0 auto;
-	margin-top: 0.5rem;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -65,13 +64,14 @@ const Progress = styled.div`
 `;
 
 const Step = styled.li`
-	height: 30px;
-	width: 30px;
+	margin: 2px 0;
+	height: 25px;
+	width: 25px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	line-height: 1;
-	padding: 0.5rem;
+	padding: 0.25rem;
 	background-color: var(--color-background);
 	border-radius: 100%;
 	border: 2px solid var(--color-white);
