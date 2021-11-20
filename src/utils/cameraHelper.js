@@ -7,12 +7,16 @@ export async function cameraOff(
 	if (videoElement) {
 		videoElement.srcObject = null;
 	}
-	context.stream.getTracks().forEach((track) => {
-		track.stop();
-	});
+	closeStream(context.stream);
 	updateCameraState();
 	updateContext({
 		stream: null,
+	});
+}
+
+export function closeStream(stream) {
+	stream.getTracks().forEach((track) => {
+		track.stop();
 	});
 }
 

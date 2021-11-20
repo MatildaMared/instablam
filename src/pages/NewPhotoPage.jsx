@@ -7,6 +7,7 @@ import AddLocationData from "../components/AddLocationData";
 import StepDescription from "../components/StepDescription";
 import Heading from "../components/Heading";
 import { Context } from "../context/Context";
+import { closeStream } from "../utils/cameraHelper";
 
 function NewPhotoPage() {
 	const [context, updateContext] = useContext(Context);
@@ -14,9 +15,13 @@ function NewPhotoPage() {
 	const [currentStep, setCurrentStep] = useState(1);
 
 	function resetData() {
+		if (context.stream) {
+			closeStream(context.stream);
+		}
 		updateContext({
 			photo: null,
 			location: null,
+			stream: null,
 		});
 	}
 

@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef, useContext } from "react";
 import styled from "styled-components";
 import ToggleCameraBtn from "./ToggleCameraBtn";
-import { cameraOn, cameraOff } from "../utils/cameraHelper";
-import TakePhotoBtn from "./TakePhotoBtn";
+import { cameraOn, cameraOff, takePhoto } from "../utils/cameraHelper";
 import Photo from "./Photo";
-import ConfirmPhotoBtns from "./ConfirmPhotoBtns";
+import ConfirmPhoto from "./ConfirmPhoto";
 import { Context } from "../context/Context";
 import StatusMessage from "./StatusMessage";
+import Button from "./Button";
 
 const Camera = ({ currentStep, setCurrentStep }) => {
 	const [context, updateContext] = useContext(Context);
@@ -15,6 +15,13 @@ const Camera = ({ currentStep, setCurrentStep }) => {
 	const [cameraIsOn, setCameraIsOn] = useState(false);
 	const videoRef = useRef(null);
 	const canvasRef = useRef(null);
+
+	const onPhotoHandler = async () => {
+		const photo = await takePhoto(videoRef, canvasRef);
+		updateContext({
+			photo: photo,
+		});
+	};
 
 	useEffect(() => {
 		if (navigator.mediaDevices) {
@@ -71,10 +78,10 @@ const Camera = ({ currentStep, setCurrentStep }) => {
 			)}
 			<StatusMessage>{statusMessage}</StatusMessage>
 			{cameraIsOn && !context.photo && (
-				<TakePhotoBtn videoRef={videoRef} canvasRef={canvasRef} />
+				<Button onClick={onPhotoHandler}>Take photo</Button>
 			)}
 			{context.photo && (
-				<ConfirmPhotoBtns
+				<ConfirmPhoto
 					setCurrentStep={setCurrentStep}
 					turnOffCamera={() => {
 						cameraOff(
