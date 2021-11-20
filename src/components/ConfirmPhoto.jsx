@@ -4,7 +4,7 @@ import Button from "./Button";
 import styled from "styled-components";
 
 function ConfirmPhoto({ setCurrentStep, turnOffCamera }) {
-	const [context, updateContext] = useContext(Context);
+	const [, updateContext] = useContext(Context);
 
 	const onYesHandler = () => {
 		setCurrentStep(2);
