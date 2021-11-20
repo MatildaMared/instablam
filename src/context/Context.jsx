@@ -7,6 +7,8 @@ export const ContextProvider = ({ children }) => {
 	const [context, setContext] = useState({
 		stream: null,
 		photo: null,
+		location: null,
+		filter: null,
 		savedPhotos: [
 			{
 				id: nanoid(),
