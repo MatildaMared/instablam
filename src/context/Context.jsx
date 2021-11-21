@@ -30,16 +30,6 @@ export const ContextProvider = ({ children }) => {
 				description:
 					"We just renovated the bedroom and I really love the gray color, it's so calming! 🥰",
 			},
-			{
-				id: nanoid(),
-				src: "/img/example-image-2.jpeg",
-				filter: "",
-				alt: "a nice looking room with white wooden floor, grey stylish interior and an open door leading to a terrace",
-				date: new Date().toLocaleDateString(),
-				location: "Halmstad, Sweden",
-				description:
-					"We just renovated the bedroom and I really love the gray color, it's so calming! 🥰",
-			},
 		],
 	});
 
