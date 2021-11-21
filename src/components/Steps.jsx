@@ -65,8 +65,8 @@ const Progress = styled.div`
 
 const Step = styled.li`
 	margin: 2px 0;
-	height: 25px;
-	width: 25px;
+	height: 26px;
+	width: 26px;
 	display: flex;
 	align-items: center;
 	justify-content: center;

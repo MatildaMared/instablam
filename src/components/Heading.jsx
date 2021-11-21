@@ -8,7 +8,9 @@ function Heading({ text }) {
 const StyledHeading = styled.h1`
 	font-family: var(--font-secondary);
 	margin-top: 0.5rem;
-  text-align: center;
+	text-align: center;
+	font-size: 2.5rem;
+	color: var(--color-white);
 `;
 
 export default Heading;

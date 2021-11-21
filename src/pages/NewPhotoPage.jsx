@@ -9,7 +9,7 @@ import Heading from "../components/Heading";
 import { Context } from "../context/Context";
 import { closeStream } from "../utils/cameraHelper";
 import AddFilter from "../components/AddFilter";
-import AddCaption from "../components/AddCaption";
+import AddDescription from "../components/AddDescription";
 
 function NewPhotoPage() {
 	const [context, updateContext] = useContext(Context);
@@ -50,7 +50,7 @@ function NewPhotoPage() {
 				<AddFilter currentStep={currentStep} setCurrentStep={setCurrentStep} />
 			)}
 			{currentStep === 4 && (
-				<AddCaption currentStep={currentStep} setCurrentStep={setCurrentStep} />
+				<AddDescription currentStep={currentStep} setCurrentStep={setCurrentStep} />
 			)}
 		</Wrapper>
 	);
