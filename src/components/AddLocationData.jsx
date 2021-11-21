@@ -10,6 +10,7 @@ import {
 	convertCoordinates,
 	getLocationString,
 } from "../utils/locationHelper";
+import Divider from "./Divider";
 
 function AddLocationData({ currentStep, setCurrentStep }) {
 	const [context, updateContext] = useContext(Context);
@@ -94,6 +95,7 @@ function AddLocationData({ currentStep, setCurrentStep }) {
 					</ButtonsWrapper>
 				</>
 			)}
+			<Divider />
 			<Button onClick={onBackHandler} ghost={true}>
 				Go back
 			</Button>

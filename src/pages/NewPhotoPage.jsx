@@ -34,8 +34,8 @@ function NewPhotoPage() {
 		<Wrapper>
 			<Heading text="Add new photo" />
 			<StepDescription currentStep={currentStep} />
-			<Divider />
 			<Steps totalSteps={totalSteps} currentStep={currentStep} />
+			<Divider />
 			{currentStep === 1 && (
 				<Camera currentStep={currentStep} setCurrentStep={setCurrentStep} />
 			)}

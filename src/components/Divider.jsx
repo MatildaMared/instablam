@@ -10,7 +10,7 @@ const StyledDivider = styled.div`
 	height: 2px;
 	background: var(--gradient);
 	margin: 0 auto;
-	margin-bottom: 0.5rem;
+	margin: 1rem 0;
 	opacity: 0.75;
 `;
 

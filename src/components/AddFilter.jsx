@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Button from "./Button";
 import Photo from "./Photo";
 import DisplayChoice from "./DisplayChoice";
+import Divider from "./Divider";
 
 function AddFilter({ currentStep, setCurrentStep }) {
 	const [context, setContext] = useContext(Context);
@@ -30,9 +31,15 @@ function AddFilter({ currentStep, setCurrentStep }) {
 		setCurrentStep(currentStep - 1);
 	};
 
+	const onConfirmHandler = () => {
+		setContext({
+			filter: selectedFilter,
+		});
+		setCurrentStep(currentStep + 1);
+	};
+
 	return (
 		<>
-			<DisplayChoice choiceHeader="Filter" choice={selectedFilter} />
 			<Grid>
 				{filters.map((filter) => (
 					<PhotoWrapper
@@ -45,6 +52,14 @@ function AddFilter({ currentStep, setCurrentStep }) {
 					</PhotoWrapper>
 				))}
 			</Grid>
+			<DisplayChoice
+				choiceHeader="Filter"
+				choice={
+					selectedFilter.charAt(0).toUpperCase() + selectedFilter.slice(1)
+				}
+			/>
+			<Button onClick={onConfirmHandler}>Next</Button>
+			<Divider />
 			<Button onClick={onBackHandler} ghost={true}>
 				Go back
 			</Button>
