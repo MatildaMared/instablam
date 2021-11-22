@@ -13,7 +13,7 @@ export const ContextProvider = ({ children }) => {
 		savedPhotos: [
 			{
 				id: nanoid(),
-				src: "/img/example-image-1.jpeg",
+				src: "/example-image-1.jpeg",
 				filter: "",
 				alt: "empty beach with pink and white clouds in the sky reflecting in the water",
 				date: new Date().toLocaleDateString(),
@@ -23,7 +23,7 @@ export const ContextProvider = ({ children }) => {
 			},
 			{
 				id: nanoid(),
-				src: "/img/example-image-2.jpeg",
+				src: "/example-image-2.jpeg",
 				filter: "",
 				alt: "a nice looking room with white wooden floor, grey stylish interior and an open door leading to a terrace",
 				date: new Date().toLocaleDateString(),
