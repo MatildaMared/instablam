@@ -7,22 +7,25 @@ import AddLocationData from "../components/AddLocationData";
 import StepDescription from "../components/StepDescription";
 import Heading from "../components/Heading";
 import { Context } from "../context/Context";
+import { closeStream } from "../utils/cameraHelper";
 import AddFilter from "../components/AddFilter";
 import AddDescription from "../components/AddDescription";
 
 function NewPhotoPage() {
-	const [, updateContext] = useContext(Context);
+	const [context, updateContext] = useContext(Context);
 	const totalSteps = 4;
 	const [currentStep, setCurrentStep] = useState(1);
 
 	useEffect(() => {
+		if (context.stream) {
+			closeStream(context.stream);
+		}
 		updateContext({
 			photo: null,
 			location: null,
 			stream: null,
-			filter: null,
 		});
-	}, [updateContext]);
+	}, []);
 
 	return (
 		<Wrapper>

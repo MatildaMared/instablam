@@ -39,7 +39,7 @@ function SettingsPage() {
 				allowNotifications: false,
 			});
 		}
-	}, [allowNotifications, updateContext]);
+	}, [allowNotifications]);
 
 	return (
 		<Wrapper>
