@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 import { nanoid } from "nanoid";
 
 export const Context = createContext();
@@ -33,6 +33,20 @@ export const ContextProvider = ({ children }) => {
 			},
 		],
 	});
+
+	useEffect(() => {
+		const localData = JSON.parse(localStorage.getItem("instablamData"));
+		if (localData) {
+			setContext({
+				...context,
+				...localData,
+			});
+		}
+	}, []);
+
+	useEffect(() => {
+		localStorage.setItem("instablamData", JSON.stringify(context));
+	}, [context]);
 
 	function updateContext(updates) {
 		setContext((prevState) => {
