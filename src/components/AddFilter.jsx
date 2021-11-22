@@ -42,13 +42,15 @@ function AddFilter({ currentStep, setCurrentStep }) {
 		<>
 			<Grid>
 				{filters.map((filter) => (
-					<PhotoWrapper
-						key={filter}
-						onClick={() => setSelectedFilter(filter)}
-						className={filter === selectedFilter ? "active" : ""}
-					>
-						<Photo size={150} src={context.photo} filter={filter} />
-						<FilterName>{filter}</FilterName>
+					<PhotoWrapper key={filter}>
+						<FilterBtn
+							className={filter === selectedFilter ? "active" : ""}
+							onClick={() => setSelectedFilter(filter)}
+							aria-label={`Photo-filter ${filter}`}
+						>
+							<Photo size={150} src={context.photo} filter={filter} />
+							<FilterName>{filter}</FilterName>
+						</FilterBtn>
 					</PhotoWrapper>
 				))}
 			</Grid>
@@ -74,11 +76,16 @@ const Grid = styled.ul`
 	max-width: 600px;
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-	grid-gap: 2px;
+	grid-gap: 1rem;
 `;
 
-const PhotoWrapper = styled.li`
-	padding: 8px;
+const PhotoWrapper = styled.li``;
+
+const FilterBtn = styled.button`
+	border: none;
+	padding: 0;
+	background-color: transparent;
+	color: var(--color-white);
 	margin: 0 auto;
 	width: fit-content;
 	height: fit-content;
@@ -87,16 +94,17 @@ const PhotoWrapper = styled.li`
 	align-items: center;
 	justify-content: center;
 	position: relative;
-	border: 4px solid transparent;
-	transition: border 0.3s;
 	cursor: pointer;
+	outline-offset: 6px;
 
 	&.active {
-		border: 4px solid var(--color-accent);
+		outline: 4px solid var(--color-accent);
 	}
 
-	&:hover {
-		border: 4px solid var(--color-accent);
+	&:hover,
+	&:focus {
+		outline: var(--outline);
+		outline-width: 4px;
 	}
 
 	& div {

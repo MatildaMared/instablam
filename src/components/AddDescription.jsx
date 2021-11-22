@@ -8,12 +8,9 @@ import styled from "styled-components";
 import { MapPin, Calendar } from "react-feather";
 
 function AddDescription({ currentStep, setCurrentStep }) {
-	const [context, updateContext] = useContext(Context);
+	const [context] = useContext(Context);
 
 	const onBackHandler = () => {
-		// updateContext({
-		//   caption: null,
-		// });
 		setCurrentStep(currentStep - 1);
 	};
 

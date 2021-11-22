@@ -13,7 +13,7 @@ import {
 import Divider from "./Divider";
 
 function AddLocationData({ currentStep, setCurrentStep }) {
-	const [context, updateContext] = useContext(Context);
+	const [, updateContext] = useContext(Context);
 	const [isLoading, setIsLoading] = useState(false);
 	const [statusMessage, setStatusMessage] = useState("");
 	const [canUseGeo, setCanUseGeo] = useState(false);

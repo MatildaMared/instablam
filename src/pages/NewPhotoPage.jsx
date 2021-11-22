@@ -12,24 +12,18 @@ import AddFilter from "../components/AddFilter";
 import AddDescription from "../components/AddDescription";
 
 function NewPhotoPage() {
-	const [context, updateContext] = useContext(Context);
+	const [, updateContext] = useContext(Context);
 	const totalSteps = 4;
 	const [currentStep, setCurrentStep] = useState(1);
 
-	function resetData() {
-		if (context.stream) {
-			closeStream(context.stream);
-		}
+	useEffect(() => {
 		updateContext({
 			photo: null,
 			location: null,
 			stream: null,
+			filter: null,
 		});
-	}
-
-	useEffect(() => {
-		resetData();
-	}, []);
+	}, [updateContext]);
 
 	return (
 		<Wrapper>
@@ -50,7 +44,10 @@ function NewPhotoPage() {
 				<AddFilter currentStep={currentStep} setCurrentStep={setCurrentStep} />
 			)}
 			{currentStep === 4 && (
-				<AddDescription currentStep={currentStep} setCurrentStep={setCurrentStep} />
+				<AddDescription
+					currentStep={currentStep}
+					setCurrentStep={setCurrentStep}
+				/>
 			)}
 		</Wrapper>
 	);
