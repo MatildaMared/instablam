@@ -73,28 +73,25 @@ function AddLocationData({ currentStep, setCurrentStep }) {
 		<>
 			<Photo size={200} />
 			<DisplayChoice choiceHeader="Location" choice={location} />
-			{location === "Unknown" ? (
-				<>
-					{canUseGeo && !isLoading && (
-						<ButtonsWrapper>
-							<Button onClick={onAddLocation}>Get location</Button>
-							<Button onClick={onSkipLocation} secondary={true}>
-								Skip this step
-							</Button>
-						</ButtonsWrapper>
-					)}
-					{statusMessage && <StatusMessage>{statusMessage}</StatusMessage>}
-				</>
-			) : (
+			{canUseGeo ? (
 				<>
 					<ButtonsWrapper>
-						<Button onClick={onConfirmLocation}>Next</Button>
+						{location !== "Unknown" ? (
+							<Button onClick={onConfirmLocation}>Next</Button>
+						) : (
+							<Button onClick={onAddLocation}>Get location</Button>
+						)}
 						<Button onClick={onSkipLocation} secondary={true}>
 							Skip this step
 						</Button>
 					</ButtonsWrapper>
 				</>
+			) : (
+				<>
+					<p>Your device does not support </p>
+				</>
 			)}
+			{statusMessage && <StatusMessage>{statusMessage}</StatusMessage>}
 			<Divider />
 			<Button onClick={onBackHandler} ghost={true}>
 				Go back
