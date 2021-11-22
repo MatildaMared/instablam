@@ -1,14 +1,19 @@
-import React, { useContext } from "react";
-import { MapPin, Calendar, XSquare } from "react-feather";
+import React, { useContext, useRef } from "react";
+import { MapPin, Calendar, XSquare, Download } from "react-feather";
 import styled from "styled-components";
 import { Context } from "./../context/Context";
-import { deletePhoto } from "./../utils/galleryHelper";
+import { deletePhoto, downloadPhoto } from "./../utils/galleryHelper";
 
 function Card({ info }) {
 	const [context, updateContext] = useContext(Context);
+	const linkRef = useRef(null);
 
 	function onDelete() {
 		deletePhoto(context, updateContext, info.id);
+	}
+
+	function onDownload() {
+		downloadPhoto(info.src, linkRef);
 	}
 
 	return (
@@ -18,12 +23,22 @@ function Card({ info }) {
 					<Calendar size={16} strokeWidth={1} />
 					<p>{info.date}</p>
 				</DetailsWrapper>
-				<DeleteBtn aria-label="Delete Image" onClick={onDelete}>
-					<XSquare />
-				</DeleteBtn>
+				<ButtonsWrapper>
+					<Btn aria-label="Download Image" onClick={onDownload}>
+						<DownloadLink ref={linkRef} href={info.src} />
+						<Download />
+					</Btn>
+					<Btn aria-label="Delete Image" onClick={onDelete}>
+						<XSquare />
+					</Btn>
+				</ButtonsWrapper>
 			</Header>
 			<ImageWrapper>
-				<Image src={info.src} alt={info.alt} />
+				<Image
+					src={info.src}
+					alt={info.alt}
+					className={`filter-${info.filter}`}
+				/>
 			</ImageWrapper>
 			<DetailsWrapper>
 				<MapPin size={16} strokeWidth={1} />
@@ -46,7 +61,7 @@ const Header = styled.header`
 	margin-bottom: 0.5rem;
 `;
 
-const DeleteBtn = styled.button`
+const Btn = styled.button`
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -57,6 +72,11 @@ const DeleteBtn = styled.button`
 	margin: 0;
 	cursor: pointer;
 	transition: color, transform 0.3s;
+	border-radius: 2px;
+
+	&:not(:last-child) {
+		margin-right: 0.5rem;
+	}
 
 	&:focus {
 		outline: var(--outline);
@@ -95,6 +115,15 @@ const DetailsWrapper = styled.div`
 const Description = styled.p`
 	margin-top: 0.5rem;
 	line-height: 1.4;
+`;
+
+const ButtonsWrapper = styled.div`
+	display: flex;
+	align-items: center;
+`;
+
+const DownloadLink = styled.a`
+	display: none;
 `;
 
 export default Card;

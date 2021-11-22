@@ -28,6 +28,7 @@ const Button = styled.button`
 	letter-spacing: 1px;
 	transition: color 0.3s;
 	margin: 0 auto;
+	border-radius: 2px;
 
 	&:focus {
 		outline: var(--outline);

@@ -33,7 +33,7 @@ function ConfirmPhoto({ setCurrentStep, turnOffCamera }) {
 const Text = styled.p`
 	width: 100%;
 	max-width: 300px;
-	margin: 1rem 0 auto;
+	margin: 1rem 0;
 	text-align: center;
 `;
 

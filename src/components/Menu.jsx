@@ -38,6 +38,7 @@ const List = styled.ul`
 		height: 100%;
 		color: var(--color-white);
 		transition: color, transform 0.3s;
+		border-radius: 2px;	
 
 		&:focus {
 			outline: var(--outline);

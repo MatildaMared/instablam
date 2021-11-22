@@ -69,19 +69,6 @@
 	mix-blend-mode: overlay;
 }
 
-.filter-charmes {
-	-webkit-filter: sepia(0.25) contrast(1.25) brightness(1.25) saturate(1.35)
-		hue-rotate(-5deg);
-	filter: sepia(0.25) contrast(1.25) brightness(1.25) saturate(1.35)
-		hue-rotate(-5deg);
-}
-
-.filter-charmes::before {
-	background: rgba(125, 105, 24, 0.25);
-	content: "";
-	mix-blend-mode: darken;
-}
-
 .filter-clarendon {
 	-webkit-filter: sepia(0.15) contrast(1.25) brightness(1.25) hue-rotate(5deg);
 	filter: sepia(0.15) contrast(1.25) brightness(1.25) hue-rotate(5deg);

@@ -4,6 +4,7 @@ import ToggleCameraBtn from "./ToggleCameraBtn";
 import { cameraOn, cameraOff, takePhoto } from "../utils/cameraHelper";
 import Photo from "./Photo";
 import ConfirmPhoto from "./ConfirmPhoto";
+import Checkbox from "./Checkbox";
 import { Context } from "../context/Context";
 import StatusMessage from "./StatusMessage";
 import Button from "./Button";
@@ -13,11 +14,22 @@ const Camera = ({ setCurrentStep }) => {
 	const [canUseMd, setCanUseMd] = useState(false);
 	const [statusMessage, setStatusMessage] = useState("");
 	const [cameraIsOn, setCameraIsOn] = useState(false);
+	const [useDelay, setUseDelay] = useState(false);
 	const videoRef = useRef(null);
 	const canvasRef = useRef(null);
 
 	const onPhotoHandler = async () => {
-		const photo = await takePhoto(videoRef, canvasRef);
+		let photo;
+		if (!useDelay) {
+			photo = await takePhoto(videoRef, canvasRef);
+		} else {
+			for (let i = 3; i > 0; i--) {
+				setStatusMessage(`${i}...`);
+				await new Promise((resolve) => setTimeout(resolve, 1000));
+			}
+			setStatusMessage("");
+			photo = await takePhoto(videoRef, canvasRef);
+		}
 		updateContext({
 			photo: photo,
 		});
@@ -60,7 +72,7 @@ const Camera = ({ setCurrentStep }) => {
 	};
 
 	return (
-		<section>
+		<Wrapper>
 			{canUseMd && (
 				<>
 					{context.photo ? (
@@ -76,9 +88,16 @@ const Camera = ({ setCurrentStep }) => {
 			{!context.photo && (
 				<ToggleCameraBtn onClick={handleCameraToggle} cameraIsOn={cameraIsOn} />
 			)}
-			<StatusMessage>{statusMessage}</StatusMessage>
+			{statusMessage && <StatusMessage>{statusMessage}</StatusMessage>}
 			{cameraIsOn && !context.photo && (
-				<Button onClick={onPhotoHandler}>Take photo</Button>
+				<>
+					<Button onClick={onPhotoHandler}>Take photo</Button>
+					<Checkbox
+						checked={useDelay}
+						setChecked={setUseDelay}
+						text={"Add 3 second delay"}
+					/>
+				</>
 			)}
 			{context.photo && (
 				<ConfirmPhoto
@@ -93,9 +112,15 @@ const Camera = ({ setCurrentStep }) => {
 					}}
 				/>
 			)}
-		</section>
+		</Wrapper>
 	);
 };
+
+const Wrapper = styled.section`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+`;
 
 const Video = styled.video`
 	width: 300px;
