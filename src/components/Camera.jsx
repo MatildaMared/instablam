@@ -1,7 +1,12 @@
 import { useState, useEffect, useRef, useContext } from "react";
 import styled from "styled-components";
 import ToggleCameraBtn from "./ToggleCameraBtn";
-import { cameraOn, cameraOff, takePhoto } from "../utils/cameraHelper";
+import {
+	cameraOn,
+	cameraOff,
+	takePhoto,
+	closeStream,
+} from "../utils/cameraHelper";
 import Photo from "./Photo";
 import ConfirmPhoto from "./ConfirmPhoto";
 import Checkbox from "./Checkbox";
@@ -29,9 +34,18 @@ const Camera = ({ setCurrentStep }) => {
 			}
 			setStatusMessage("");
 			photo = await takePhoto(videoRef, canvasRef);
+			if (context.allowNotifications) {
+				new Notification("Photo taken! 📸", {
+					body: "Looking good today! 😎",
+					icon: photo,
+					image: photo,
+				});
+			}
 		}
+		closeStream(context.stream);
 		updateContext({
 			photo: photo,
+			stream: null,
 		});
 	};
 
@@ -94,9 +108,14 @@ const Camera = ({ setCurrentStep }) => {
 					<Button onClick={onPhotoHandler}>Take photo</Button>
 					<Checkbox
 						checked={useDelay}
-						setChecked={setUseDelay}
+						onChange={() => setUseDelay(!useDelay)}
 						text={"Add 3 second delay"}
 					/>
+					<Text>
+						Hey gorgeous! If you go to settings and allow us to send you
+						notifications, you will recieve a notification when a photo is taken
+						with delay. Great huh? 🤩
+					</Text>
 				</>
 			)}
 			{context.photo && (
@@ -142,6 +161,12 @@ const VideoWrapper = styled.div`
 
 const Canvas = styled.canvas`
 	position: absolute;
+`;
+
+const Text = styled.p`
+	max-width: 350px;
+	font-size: 0.8rem;
+	margin: 0.5rem 0;
 `;
 
 export default Camera;

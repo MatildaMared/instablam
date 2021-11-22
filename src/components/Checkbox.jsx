@@ -1,18 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-function Checkbox({ checked, setChecked, text }) {
-	const onChangeHandler = () => {
-		setChecked(!checked);
-		console.log(checked);
-	};
-
+function Checkbox({ checked, onChange, text }) {
 	return (
 		<Wrapper>
-			<Label class="container" onChange={onChangeHandler}>
+			<Label onChange={onChange}>
 				{text}
-				<HiddenCheckbox type="checkbox" checked={checked} />
-				<Checkmark class="checkmark"></Checkmark>
+				<HiddenCheckbox type="checkbox" checked={checked} onChange={onChange} />
+				<Checkmark></Checkmark>
 			</Label>
 		</Wrapper>
 	);

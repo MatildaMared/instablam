@@ -7,7 +7,9 @@ export async function cameraOff(
 	if (videoElement) {
 		videoElement.srcObject = null;
 	}
-	closeStream(context.stream);
+	if (context.stream) {
+		closeStream(context.stream);
+	}
 	updateCameraState();
 	updateContext({
 		stream: null,
