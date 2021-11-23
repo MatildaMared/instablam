@@ -17,9 +17,11 @@ export async function cameraOff(
 }
 
 export function closeStream(stream) {
-	stream.getTracks().forEach((track) => {
-		track.stop();
-	});
+	if (stream) {
+		stream.getTracks().forEach((track) => {
+			track.stop();
+		});
+	}
 }
 
 export async function cameraOn(
@@ -31,8 +33,8 @@ export async function cameraOn(
 	const constraints = {
 		video: {
 			facingMode: "user",
-			width: 600,
-			height: 490,
+			width: 300,
+			height: 240,
 		},
 	};
 	try {
@@ -59,9 +61,16 @@ export async function cameraOn(
 }
 
 export async function takePhoto(videoRef, canvasRef) {
+	console.log(videoRef.current);
 	try {
 		let context = canvasRef.current.getContext("2d");
-		context.drawImage(videoRef.current, 0, 0, 300, 245);
+		context.drawImage(
+			videoRef.current,
+			0,
+			0,
+			videoRef.current.videoWidth,
+			videoRef.current.videoHeight
+		);
 		let photo = canvasRef.current.toDataURL("image/png");
 		return photo;
 	} catch (err) {
