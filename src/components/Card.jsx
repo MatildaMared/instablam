@@ -34,11 +34,13 @@ function Card({ info }) {
 				</ButtonsWrapper>
 			</Header>
 			<ImageWrapper>
-				<Image
-					src={info.src}
-					alt={info.alt}
-					className={`filter-${info.filter}`}
-				/>
+				<ContainAspectRatio>
+					<Image
+						src={info.src}
+						alt={info.alt}
+						className={`filter-${info.filter}`}
+					/>
+				</ContainAspectRatio>
 			</ImageWrapper>
 			<DetailsWrapper>
 				<MapPin size={16} strokeWidth={1} />
@@ -90,8 +92,26 @@ const Btn = styled.button`
 `;
 
 const Image = styled.img`
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
 	width: 100%;
-	height: auto;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+`;
+
+const ContainAspectRatio = styled.div`
+	position: relative;
+	width: 100%;
+
+	&::after {
+		content: "";
+		display: block;
+		padding-bottom: 100%;
+	}
 `;
 
 const ImageWrapper = styled.div`
