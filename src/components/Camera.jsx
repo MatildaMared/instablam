@@ -175,7 +175,6 @@ const VideoWrapper = styled.div`
 const VideoOverlay = styled.div`
 	top: ${(props) => (props.width > props.height ? "4px" : "50%")};
 	position: absolute;
-	top: 4px;
 	height: ${(props) =>
 		props.height > props.width ? props.width : props.height}px;
 	width: ${(props) =>
