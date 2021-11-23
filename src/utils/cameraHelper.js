@@ -17,9 +17,11 @@ export async function cameraOff(
 }
 
 export function closeStream(stream) {
-	stream.getTracks().forEach((track) => {
-		track.stop();
-	});
+	if (stream) {
+		stream.getTracks().forEach((track) => {
+			track.stop();
+		});
+	}
 }
 
 export async function cameraOn(
@@ -37,7 +39,12 @@ export async function cameraOn(
 	};
 	try {
 		const stream = await navigator.mediaDevices.getUserMedia(constraints);
-		videoElement.srcObject = stream;
+		if ("srcObject" in videoElement) {
+			videoElement.srcObject = stream;
+		} else {
+			videoElement.src = window.URL.createObjectURL(stream);
+		}
+
 		updateContext({
 			stream: stream,
 		});
