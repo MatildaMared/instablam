@@ -180,7 +180,7 @@ const VideoOverlay = styled.div`
 	width: ${(props) =>
 		props.height > props.width ? props.width : props.height}px;
 	background-color: transparent;
-	border: 4px dotted hsla(333, 85%, 10%, 0.3);
+	border: 4px dotted hsla(333, 85%, 10%, 0.5);
 	left: ${(props) => (props.width > props.height ? "50%" : "4px")};
 	transform: ${(props) =>
 		props.width > props.height ? "translateX(-50%)" : "translateY(-50%)"};
@@ -195,7 +195,7 @@ const Text = styled.p`
 	max-width: 350px;
 	font-size: 1rem;
 	margin: 0.5rem 0;
-	opacity: .8;
+	opacity: 0.8;
 `;
 
 export default Camera;
