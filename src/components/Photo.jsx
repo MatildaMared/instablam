@@ -20,7 +20,8 @@ function Photo({ size, filter }) {
 
 const PhotoElem = styled.img`
 	width: ${(props) => props.size}px;
-	height: auto;
+	height: ${(props) => (props.size / 4) * 3}px;
+	object-fit: cover;
 `;
 
 const Wrapper = styled.div`

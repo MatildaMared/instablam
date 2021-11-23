@@ -93,8 +93,14 @@ const Camera = ({ setCurrentStep }) => {
 						<Photo size={300} />
 					) : (
 						<VideoWrapper>
-							<Canvas ref={canvasRef} width="300" height="245"></Canvas>
 							<Video ref={videoRef} playsinline></Video>
+							{videoRef.current && (
+								<Canvas
+									ref={canvasRef}
+									width={videoRef.current.videoWidth}
+									height={videoRef.current.videoHeight}
+								></Canvas>
+							)}
 						</VideoWrapper>
 					)}
 				</>
