@@ -12,6 +12,12 @@ import { ExpirationPlugin } from "workbox-expiration";
 import { precacheAndRoute, createHandlerBoundToURL } from "workbox-precaching";
 import { registerRoute } from "workbox-routing";
 import { StaleWhileRevalidate } from "workbox-strategies";
+import {
+	googleFontsCache,
+	imageCache,
+	staticResourceCache,
+	pageCache,
+} from "workbox-recipes";
 
 clientsClaim();
 
@@ -20,6 +26,7 @@ clientsClaim();
 // This variable must be present somewhere in your service worker file,
 // even if you decide not to use precaching. See https://cra.link/PWA
 precacheAndRoute(self.__WB_MANIFEST);
+console.log(self.__WB_MANIFEST);
 
 // Set up App Shell-style routing, so that all navigation requests
 // are fulfilled with your index.html shell. Learn more at
@@ -60,7 +67,7 @@ registerRoute(
 		plugins: [
 			// Ensure that once this runtime cache reaches a maximum size the
 			// least-recently used images are removed.
-			new ExpirationPlugin({ maxEntries: 50 }),
+			new ExpirationPlugin({ maxEntries: 100 }),
 		],
 	})
 );
@@ -74,3 +81,11 @@ self.addEventListener("message", (event) => {
 });
 
 // Any other custom service worker logic can go here.
+
+googleFontsCache();
+
+imageCache();
+
+staticResourceCache();
+
+pageCache();
