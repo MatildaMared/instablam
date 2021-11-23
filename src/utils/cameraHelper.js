@@ -61,13 +61,7 @@ export async function cameraOn(
 export async function takePhoto(videoRef, canvasRef) {
 	try {
 		let context = canvasRef.current.getContext("2d");
-		context.drawImage(
-			videoRef.current,
-			0,
-			0,
-			canvasRef.current.width,
-			canvasRef.current.height
-		);
+		context.drawImage(videoRef.current, 0, 0, 300, 245);
 		let photo = canvasRef.current.toDataURL("image/png");
 		return photo;
 	} catch (err) {

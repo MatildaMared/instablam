@@ -143,7 +143,8 @@ const Wrapper = styled.section`
 
 const Video = styled.video`
 	width: 300px;
-	height: 245px;
+	height: auto;
+	min-height: 220px;
 	background-color: var(--color-background);
 	margin-bottom: -6px;
 `;
@@ -161,6 +162,7 @@ const VideoWrapper = styled.div`
 
 const Canvas = styled.canvas`
 	position: absolute;
+	display: none;
 `;
 
 const Text = styled.p`
