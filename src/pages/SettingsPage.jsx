@@ -3,6 +3,7 @@ import { Context } from "../context/Context";
 import Heading from "../components/Heading";
 import styled from "styled-components";
 import Checkbox from "../components/Checkbox";
+import { Bell } from "react-feather";
 
 function SettingsPage() {
 	const [context, updateContext] = useContext(Context);
@@ -44,7 +45,9 @@ function SettingsPage() {
 	return (
 		<Wrapper>
 			<Heading text="Settings" />
-			<SettingsHeading>Notifications</SettingsHeading>
+			<SettingsHeading>
+				Notifications <Bell size={16} strokeWidth={1} />
+			</SettingsHeading>
 			{canUseNotifications ? (
 				<>
 					<Checkbox
@@ -81,15 +84,23 @@ const SettingsHeading = styled.h2`
 	letter-spacing: 1px;
 	font-weight: 300;
 	margin: 0.5rem 0;
-	color: var(--color-accent);
+	color: var(--color-white);
 	position: relative;
+	display: flex;
+	align-items: center;
+
+	& svg {
+		margin-left: 0.25rem;
+		stroke: var(--color-accent);
+	}
 
 	&::before,
 	&::after {
+		opacity: 0.7;
 		content: "";
 		width: 50px;
 		height: 1px;
-		background-color: var(--color-accent);
+		background: var(--gradient);
 		position: absolute;
 		top: 50%;
 	}

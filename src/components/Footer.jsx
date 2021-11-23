@@ -78,7 +78,7 @@ const Heading = styled.p`
 		content: "";
 		width: 50px;
 		height: 1px;
-		background-color: var(--color-accent);
+		background: var(--gradient);
 		position: absolute;
 		top: 50%;
 	}
