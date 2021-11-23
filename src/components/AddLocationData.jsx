@@ -47,7 +47,7 @@ function AddLocationData({ currentStep, setCurrentStep }) {
 			setLocation(locationString);
 		} catch (err) {
 			setStatusMessage(
-				"Something went wrong, please check your browser settings to make sure to allow the app to use your location data! 🙂"
+				"Something went wrong! 😔 You are either offline or need to check your browser settings to make sure to allow the app to use your location data. Feel free to try again 🙂"
 			);
 		}
 	};

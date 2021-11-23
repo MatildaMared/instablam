@@ -71,7 +71,7 @@ function AddFilter({ currentStep, setCurrentStep }) {
 
 const Grid = styled.ul`
 	padding: 0;
-	margin: 0.5rem 0;
+	margin: 0.5rem;
 	width: 100%;
 	max-width: 600px;
 	display: grid;
