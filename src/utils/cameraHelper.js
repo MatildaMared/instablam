@@ -17,7 +17,7 @@ export async function cameraOff(
 }
 
 export function closeStream(stream) {
-	if (stream) {
+	if (stream && stream.getTracks) {
 		stream.getTracks().forEach((track) => {
 			track.stop();
 		});

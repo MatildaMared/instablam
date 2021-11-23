@@ -27,6 +27,12 @@ function AddLocationData({ currentStep, setCurrentStep }) {
 				"Your device does not support Geolocation unfortunately!"
 			);
 		}
+
+		if (!navigator.onLine) {
+			setStatusMessage(
+				"You seem to be offline at the moment! 😢 Please wait until you are online or skip this step if you want to continue in offline mode."
+			);
+		}
 	}, []);
 
 	const onAddLocation = async () => {
@@ -73,7 +79,7 @@ function AddLocationData({ currentStep, setCurrentStep }) {
 		<>
 			<Photo size={200} />
 			<DisplayChoice choiceHeader="Location" choice={location} />
-			{canUseGeo ? (
+			{canUseGeo && (
 				<>
 					<ButtonsWrapper>
 						{location !== "Unknown" ? (
@@ -85,10 +91,6 @@ function AddLocationData({ currentStep, setCurrentStep }) {
 							Skip this step
 						</Button>
 					</ButtonsWrapper>
-				</>
-			) : (
-				<>
-					<p>Your device does not support </p>
 				</>
 			)}
 			{statusMessage && <StatusMessage>{statusMessage}</StatusMessage>}

@@ -180,7 +180,7 @@ const VideoOverlay = styled.div`
 	width: ${(props) =>
 		props.height > props.width ? props.width : props.height}px;
 	background-color: transparent;
-	border: 4px dashed hsla(333, 85%, 10%, 0.5);
+	border: 4px dotted hsla(333, 85%, 10%, 0.3);
 	left: ${(props) => (props.width > props.height ? "50%" : "4px")};
 	transform: ${(props) =>
 		props.width > props.height ? "translateX(-50%)" : "translateY(-50%)"};
