@@ -7,7 +7,7 @@ function StatusMessage({ children }) {
 
 const StyledStatusMessage = styled.p`
 	text-align: center;
-	font-size: 0.9rem;
+	font-size: 1rem;
 	width: 100%;
 	max-width: 350px;
 	margin: 0 auto;

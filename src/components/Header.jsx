@@ -15,7 +15,8 @@ function Header() {
 
 const Wrapper = styled.header`
 	padding: 0.5rem 1rem;
-	border-bottom: 1px solid hsla(0, 0%, 12%, 1);
+	border-bottom: 1px solid hsla(0, 0%, 20%, 1);
+	background-color: hsla(0, 0%, 10%, 10);
 `;
 
 const Content = styled.div`

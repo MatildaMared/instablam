@@ -72,7 +72,7 @@ const Wrapper = styled.div`
 `;
 
 const Label = styled.label`
-	font-size: 0.8rem;
+	font-size: 1rem;
 	cursor: pointer;
 `;
 

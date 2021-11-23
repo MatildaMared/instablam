@@ -22,7 +22,7 @@ const ButtonBase = styled.button`
 	border: none;
 	border-radius: 10px;
 	padding: 0.5rem 1rem;
-	font-size: 0.8rem;
+	font-size: 1rem;
 	cursor: pointer;
 	border: 2px solid transparent;
 	transition: border 0.3s, color 0.3s, background-color 0.3s;
@@ -56,10 +56,10 @@ const SecondaryButton = styled(ButtonBase)`
 const GhostButton = styled.button`
 	display: block;
 	margin: 0 auto;
-	margin-bottom: .5rem;
+	margin-bottom: 0.5rem;
 	padding: 0;
 	color: var(--color-accent);
-	font-size: 0.8rem;
+	font-size: 1rem;
 	background-color: transparent;
 	border: 2px solid transparent;
 	transition: border 0.3s;

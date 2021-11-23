@@ -42,8 +42,9 @@ function Footer() {
 }
 
 const Wrapper = styled.footer`
-	padding: 1rem;
-	border-top: 1px solid hsla(0, 0%, 12%, 1);
+	padding: 2rem 1rem;
+	border-top: 1px solid hsla(0, 0%, 20%, 1);
+	background-color: hsla(0, 0%, 10%, 10);
 `;
 
 const Content = styled.div`

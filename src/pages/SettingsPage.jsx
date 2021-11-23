@@ -116,7 +116,7 @@ const SettingsHeading = styled.h2`
 
 const Text = styled.p`
 	max-width: 350px;
-	font-size: 0.8rem;
+	font-size: 1rem;
 	margin: 0.5rem 0;
 `;
 

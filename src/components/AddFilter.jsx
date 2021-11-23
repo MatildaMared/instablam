@@ -71,15 +71,17 @@ function AddFilter({ currentStep, setCurrentStep }) {
 
 const Grid = styled.ul`
 	padding: 0;
-	margin: 0.5rem;
+	margin: 0.5rem 1rem;
 	width: 100%;
 	max-width: 600px;
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-	grid-gap: 1rem;
+	grid-gap: 1.5rem;
 `;
 
-const PhotoWrapper = styled.li``;
+const PhotoWrapper = styled.li`
+
+`;
 
 const FilterBtn = styled.button`
 	border: none;
@@ -113,14 +115,14 @@ const FilterBtn = styled.button`
 `;
 
 const FilterName = styled.p`
-	margin-top: -0.5rem;
-	font-size: 0.75rem;
+	margin-top: -16px;
+	font-size: 0.8rem;
 	text-transform: uppercase;
 	letter-spacing: 1px;
 	position: absolute;
 	top: 20px;
-	left: 12px;
-	right: 12px;
+	left: 4px;
+	right: 4px;
 	background-color: hsla(0, 0%, 0%, 0.75);
 	text-align: center;
 	user-select: none;

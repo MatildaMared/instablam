@@ -138,7 +138,7 @@ const SubmitBtn = styled.button`
 	cursor: pointer;
 	transition: background-color 0.3s, border 0.3s;
 	margin: 0.5rem 0;
-	font-size: 0.8rem;
+	font-size: 1rem;
 
 	&:hover {
 		background-color: var(--color-background);
