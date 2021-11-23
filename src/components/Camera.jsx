@@ -95,11 +95,17 @@ const Camera = ({ setCurrentStep }) => {
 						<VideoWrapper>
 							<Video ref={videoRef} playsinline autoplay></Video>
 							{videoRef.current && (
-								<Canvas
-									ref={canvasRef}
-									width={videoRef.current.videoWidth}
-									height={videoRef.current.videoHeight}
-								></Canvas>
+								<>
+									<VideoOverlay
+										width={videoRef.current.offsetWidth}
+										height={videoRef.current.offsetHeight}
+									/>
+									<Canvas
+										ref={canvasRef}
+										width={videoRef.current.videoWidth}
+										height={videoRef.current.videoHeight}
+									></Canvas>
+								</>
 							)}
 						</VideoWrapper>
 					)}
@@ -164,6 +170,21 @@ const VideoWrapper = styled.div`
 	margin-top: 0.5rem;
 	margin-bottom: 0.5rem;
 	position: relative;
+`;
+
+const VideoOverlay = styled.div`
+	top: ${(props) => (props.width > props.height ? "4px" : "50%")};
+	position: absolute;
+	top: 4px;
+	height: ${(props) =>
+		props.height > props.width ? props.width : props.height}px;
+	width: ${(props) =>
+		props.height > props.width ? props.width : props.height}px;
+	background-color: transparent;
+	border: 4px dashed hsla(333, 85%, 10%, 0.5);
+	left: ${(props) => (props.width > props.height ? "50%" : "4px")};
+	transform: ${(props) =>
+		props.width > props.height ? "translateX(-50%)" : "translateY(-50%)"};
 `;
 
 const Canvas = styled.canvas`
