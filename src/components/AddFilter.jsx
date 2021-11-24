@@ -70,18 +70,15 @@ function AddFilter({ currentStep, setCurrentStep }) {
 }
 
 const Grid = styled.ul`
-	padding: 0;
+	padding: 0 1rem;
 	margin: 0.5rem 1rem;
-	width: 100%;
-	max-width: 600px;
+	max-width: 100%;
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-	grid-gap: 1.5rem;
+	grid-template-columns: repeat(4, 1fr);
+	grid-gap: 1rem;
 `;
 
-const PhotoWrapper = styled.li`
-
-`;
+const PhotoWrapper = styled.li``;
 
 const FilterBtn = styled.button`
 	border: none;

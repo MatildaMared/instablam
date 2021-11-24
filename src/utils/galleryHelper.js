@@ -5,6 +5,6 @@ export function deletePhoto(context, updateContext, id) {
 
 export function downloadPhoto(url, linkRef) {
 	let link = linkRef.current;
-	link.download = "photo.png";
+	link.download = "photo";
 	link.click();
 }
