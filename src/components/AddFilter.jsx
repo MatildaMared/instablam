@@ -75,6 +75,16 @@ const Grid = styled.ul`
 	max-width: 100%;
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
+	@media (max-width: 800px) {
+		grid-template-columns: repeat(3, 1fr);
+	}
+	@media (max-width: 620px) {
+		grid-template-columns: repeat(2, 1fr);
+	}
+	@media (max-width: 410px) {
+		grid-template-columns: repeat(1, 1fr);
+	}
+
 	grid-gap: 1rem;
 `;
 
