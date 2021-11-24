@@ -8,7 +8,7 @@
 
 - [GitHub Repo](https://github.com/MatildaMared/instablam "Instablam Repo")
 
-- [Live](https://matildamared-instablam.netlify.app "Live View")
+- [Live Demo](https://matildamared-instablam.netlify.app "Live View")
 
 ---
 
@@ -25,7 +25,7 @@ This app is using several API's to access the camera, get location data and send
 
 The app is a progressive web app, using a service worker to cache data. It is also installable in the browser supporting this feature, which means it can be installed and used as a normal desktop app. If the user is not connected to the internet the app will still work, even though there are certain features you cannot use (the part where you get information about your location).
 
-I've also worked REALLY hard to make this app accessible for those using a screen reader, by rendering descriptive text that will only show up on a screen reader, in certain places to describe what is happening visually. The app is also 100% usable using only a keyboard and no mouse which I am really proud over! 😄
+I've also worked REALLY hard on the accessibility of the app, for example by making the app functional for those using a screen reader. This is done by using aria attributes, semantic HTML elements and displaying descriptive text, that will only show up on a screen reader and not visually, in certain places to describe what is happening. The app is also 100% accessible using only a keyboard and no mouse which I am really proud over! 😄
 
 ---
 
