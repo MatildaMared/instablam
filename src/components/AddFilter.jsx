@@ -72,7 +72,7 @@ function AddFilter({ currentStep, setCurrentStep }) {
 const Grid = styled.ul`
 	padding: 0 1rem;
 	margin: 0.5rem 1rem;
-	max-width: 100%;
+	width: 100%;
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	@media (max-width: 800px) {
@@ -81,7 +81,7 @@ const Grid = styled.ul`
 	@media (max-width: 620px) {
 		grid-template-columns: repeat(2, 1fr);
 	}
-	@media (max-width: 410px) {
+	@media (max-width: 350px) {
 		grid-template-columns: repeat(1, 1fr);
 	}
 
