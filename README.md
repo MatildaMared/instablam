@@ -1,53 +1,74 @@
-### **1. Uppdragsbeskrivning**
+<h1 align="center">Instablam</h1>
 
-Du ska bygga en PWA som kombinerar de tekniker vi har gått igenom i kursen.
-
-Appen ska publiceras online med [https://surge.sh/](https://surge.sh/) som vi använde i kursen. Den ska använda React.
-
-### **Kompabilitet**
-
-Eftersom PWA är en relativt ny teknik, med ofullständigt stöd i olika webbläsare och på olika plattformar; är det svårt att uppnå 100% stöd för alla funktioner. Inlämningarna kommer att testas på Windows-dator med Chrome och Firefox. Om du känner dig osäker på om din app kommer att fungera, kan du redovisa de svajiga bitarna på lektionstid för läraren.
-
-### **Appen: Instablam**
-
-_Detta är kraven som din app ska uppfylla._
-
-Instablam ska vara en PWA, som användaren kan använda för att ta bilder med sin mobil, eller dator med kamera. När man tar en bild så ska den sparas i ett galleri i appen. Tillsammans med bilden ska du spara information om när den togs, samt på vilken plats. Om inte användaren tillåter platsinformation ska det framgå tydligt på bilden, att appen inte vet var den är tagen.
-
-Användaren ska kunna bläddra i galleriet, ta bort enskilda bilder, ladda ner en bild. Det ska finnas minst två bilder i galleriet när appen startar.
-
-**VG**: Försök använda reverse geocoding för att visa närmaste orten, istället för latitud och longitud.
-
-**VG**: Funktion för att appen ska vänta 3 sekunder och  sedan ta en bild. När bilden är tagen ska en notifiering visas.
-
-**VG**: Appens filer och tagna bilder sparas i cache, så att användaren kan titta på dem även i offline-läge.
-
-### **Testa din app**
-
-Använd fler än en webbläsare när du testar din app. Samarbeta gärna med klasskamrater så att ni kan testa era appar i så många olika miljöer som möjligt.
-
-Kom ihåg att du även kan testa appen med Lighthouse - inställningen Progressive Web App.
+<p align="center">"Instablam" is an Instagram-like progressive web app where you take photos using your mobile/computer camera and then add a filter, description and other details. The saved photos are displayed in a gallery.</p>
 
 ---
 
-### **2. Inlämning**
+## Links 🌍
 
-Ditt projekt ska vara ett GitHub-repo. Skriv länken till både GitHub-repot och den publicerade appen som en kommentar till inlämningen. Berätta kort om din app och de viktigaste funktionerna. Zippa hela repot (utom `node_modules/` och `.git/`) och ladda upp på LearnPoint.
+- [GitHub Repo](https://github.com/MatildaMared/instablam "Instablam Repo")
 
-**Tips!** Du ska använda zip-formatet för att komprimera filerna. Enklast är att ladda ner ett zip-arkiv från GitHub.
+- [Live](https://matildamared-instablam.netlify.app "Live View")
 
 ---
 
-### **3. Bedömning**
+## Screenshots 📸
 
-**För godkänt** på projektet ska appen
+![Gallery View](screenshot-1.png "Gallery Page")
+![Gallery View](screenshot-2.png "Photo Page")
 
-1. Vara inlämnad på rätt sätt (publicerad online, publikt repo på GitHub, zippas och laddas upp på LearnPoint)
-2. Vara en installerbar PWA, som använder Geolocation och MediaDevices
-3. Appen uppfyller specen under rubriken "Appen: Instablam"
+---
 
-**För väl godkänt** på projektet ska appen
+## About the app 📝
 
-1. Använda Notification API
-2. Kunna gå att använda offline, med hjälp av en service worker
-3. hänsyn tagen till tillgänglighet
+This app is using several API's to access the camera, get location data and send notifications to the user. Some of these API's are working differently in different browser which means the app might not work everywhere. I've tested the app sucessfully in Chrome, Edge, FireFox and Safari on macOS, Chrome and Safari och iOS and ipadOS and Chrome on Windows, so hopefully it will work for the majority of users. 😊
+
+The app is a progressive web app, using a service worker to cache data. It is also installable in the browser supporting this feature, which means it can be installed and used as a normal desktop app. If the user is not connected to the internet the app will still work, even though there are certain features you cannot use (the part where you get information about your location).
+
+I've also worked REALLY hard to make this app accessible for those using a screen reader, by rendering descriptive text that will only show up on a screen reader, in certain places to describe what is happening visually. The app is also 100% usable using only a keyboard and no mouse which I am really proud over! 😄
+
+---
+
+## Technologies used 💻
+
+- HTML
+- CSS
+- JavaScript
+- React
+- styled-components
+
+---
+
+## Icons 🎨
+
+This app is using icons from https://feathericons.com/
+
+---
+
+## Getting Started 🛫
+
+1. Clone the repo, either by downloading a zip file through this GitHub repository, or by running `git clone https://github.com/MatildaMared/instablam.git`
+
+2. Install NPM packages by running `npm install`
+
+3. In the project directory, you can run `npm start` to start the development server. The app is built using `create-react-app`. Open [http://localhost:3000](http://localhost:3000) to view it in the browser. The page will reload if you make edits.
+
+4. To make a production build, run `npm run build`. This builds the app for production to the `build` folder. It correctly bundles React in production mode and optimizes the build for the best performance.
+
+---
+
+## Author 👩‍💻
+
+**Matilda Mared**
+
+- [GitHub Profile](https://github.com/MatildaMared "MatildaMared")
+- [LinkedIn Profile](https://www.linkedin.com/in/matilda-mared "MatildaMared")
+- [Email](mailto:rohitjain19060@gmail.com?subject=Hi "Hi!")
+
+---
+
+## 🤝 Support
+
+Contributions, issues, and feature requests are welcome!
+
+Give a ⭐️ if you like this project!
