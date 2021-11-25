@@ -14,8 +14,8 @@
 
 ## Screenshots 📸
 
-![Gallery View](screenshot-1.png "Gallery Page")
-![Gallery View](screenshot-2.png "Photo Page")
+![Gallery View](https://user-images.githubusercontent.com/43721548/143270442-da1a4d0a-35a2-4b14-a93e-9079ace94eeb.PNG)
+![Photo Page](https://user-images.githubusercontent.com/43721548/143270541-56a539cf-8e99-4560-97ee-7ce1be3cf97b.PNG)
 
 ---
 
