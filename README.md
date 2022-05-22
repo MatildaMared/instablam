@@ -63,7 +63,7 @@ This app is using icons from https://feathericons.com/
 
 - [GitHub Profile](https://github.com/MatildaMared "MatildaMared")
 - [LinkedIn Profile](https://www.linkedin.com/in/matilda-mared "MatildaMared")
-- [Email](mailto:rohitjain19060@gmail.com?subject=Hi "Hi!")
+- [Email](mailto:matildamared@live.se?subject=Hi "Hi!")
 
 ---
 
